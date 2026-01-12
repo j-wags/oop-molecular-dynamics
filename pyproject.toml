@@ -1,0 +1,15 @@
+[project]
+name = "oop"
+version = "0.1.0"
+description = "Add a short description here"
+authors = [
+    {name = "David W.H. Swenson", email = "dwhs@hyperblazer.net"},
+    {name = "Ethan Holz", email = "ethan.holz@omsf.io"}
+]
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "jupyterlab"
+]
+requires-python = ">=3.12" # This is SPEC0 supported version
+
