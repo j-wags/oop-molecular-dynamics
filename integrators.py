@@ -8,6 +8,8 @@ class Integrator:
     Abstract base class for toy engine integrators.
     """
 
+    this_integrators_name = "Verlet Integrator"
+    
     def step(self, system: System, state: State) -> State:
         """
         Take an MD step. Update the state.
@@ -30,6 +32,11 @@ class Integrator:
         new_velocities = state.velocities + forces * system.inv_masses[:, np.newaxis] * dt
         return State(positions=state.positions, velocities=new_velocities)
 
+    def name(self):
+        """
+        The name of this integrator"
+        """
+        return self.this_integrators_name
 
 class EulerIntegrator(Integrator):
     """Euler integrator
@@ -37,7 +44,7 @@ class EulerIntegrator(Integrator):
     Parameters
     ----------
     dt : float
-        time step
+        time step in fs
     """
 
     def __init__(self, dt: float):
@@ -74,6 +81,11 @@ class VelocityVerletIntegrator(Integrator):
         state4 = self._velocity_update(system, state2, self.dt / 2)
         return state4
 
+    def name(self):
+        """
+        The name of the verlet integrator"
+        """
+        return self.this_integrators_name
 
 class LangevinIntegratorBase(Integrator):
     """Base class for Langevin integrators
