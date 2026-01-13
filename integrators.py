@@ -68,10 +68,11 @@ class VelocityVerletIntegrator(Integrator):
         """
         Take an MD step. Update the state.
         """
-        state = self._velocity_update(system, state, self.dt / 2)
-        state = self._position_update(system, state, self.dt)
-        state = self._velocity_update(system, state, self.dt / 2)
-        return state
+        state1 = state
+        state2 = self._velocity_update(system, state1, self.dt / 2)
+        state3 = self._position_update(system, state2, self.dt)
+        state4 = self._velocity_update(system, state2, self.dt / 2)
+        return state4
 
 
 class LangevinIntegratorBase(Integrator):

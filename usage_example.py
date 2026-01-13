@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from force_field import TwoGaussianWellsForceField
+from force_field import TwoGaussianWellsForceField, HarmonicOscillatorForceField
 from integrators import (
     EulerIntegrator,
     LangevinBAOABIntegrator,
@@ -17,7 +17,9 @@ def _build_system(num_particles: int) -> System:
     centers = np.array([[-1.0, 0.0], [1.0, 0.0]])
     depths = np.array([3.0, 2.0])
     sigmas = np.array([0.6, 0.8])
-    forcefield = TwoGaussianWellsForceField(centers=centers, depths=depths, sigmas=sigmas)
+    #forcefield = TwoGaussianWellsForceField(centers=centers, depths=depths, sigmas=sigmas)
+    forcefield = HarmonicOscillatorForceField(center=centers[0],
+                                              spring_constant=1e6)
     masses = np.ones(num_particles)
     return System(masses=masses, forcefield=forcefield)
 
@@ -138,5 +140,5 @@ def run_langevin_tracking(num_steps: int = 1000, dt: float = 0.01) -> None:
 
 
 if __name__ == "__main__":
-    run_energy_tracking()
-    run_langevin_tracking()
+    run_energy_tracking(10000)
+    #run_langevin_tracking()
