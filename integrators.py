@@ -37,7 +37,7 @@ class EulerIntegrator(Integrator):
     Parameters
     ----------
     dt : float
-        time step
+        time step, in femtoseconds (fs)
     """
 
     def __init__(self, dt: float):
@@ -58,7 +58,7 @@ class VelocityVerletIntegrator(Integrator):
     Parameters
     ----------
     dt : float
-        time step
+        time step, in femtoseconds (fs)
     """
 
     def __init__(self, dt: float):
@@ -81,7 +81,7 @@ class LangevinIntegratorBase(Integrator):
     Parameters
     ----------
     dt : float
-        time step
+        time step, in picoseconds
     temperature : float
         temperature in Kelvin
     friction_coeff : float
@@ -105,7 +105,7 @@ class LangevinBAOABIntegrator(LangevinIntegratorBase):
     Parameters
     ----------
     dt : float
-        time step
+        time step, in femtoseconds
     temperature : float
         temperature in Kelvin
     friction_coeff : float
